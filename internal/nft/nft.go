@@ -15,11 +15,11 @@ func ListNft(owner string) ([]*nft.Nft, error) {
 	return nft.SelectNft(owner)
 }
 
-func CreateNft(osNfts *opensea.NFTResponse) error {
+func CreateNft(owner string, osNfts *opensea.NFTResponse) error {
 	retries := 0
 	inserted := false
 	for !inserted && retries < maxRetries {
-		err := nft.InsertNft(osNfts)
+		err := nft.InsertNft(owner, osNfts)
 		if err != nil {
 			fmt.Println(err)
 			retries++

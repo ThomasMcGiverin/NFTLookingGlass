@@ -24,7 +24,6 @@ type Asset struct {
 }
 
 type Owner struct {
-	Address  *string `json:"address"`
 	UserData *User   `json:"user"`
 }
 

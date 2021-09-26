@@ -37,7 +37,7 @@ func SelectNft(owner string) ([]*Nft, error) {
 	return result, nil
 }
 
-func InsertNft(osNfts *opensea.NFTResponse) error {
+func InsertNft(owner string, osNfts *opensea.NFTResponse) error {
 	db, err := models.DB()
 	if err != nil {
 		return err
@@ -46,7 +46,7 @@ func InsertNft(osNfts *opensea.NFTResponse) error {
 	flatNfts := make([]*Nft, 0)
 	for _, osNft := range osNfts.Assets {
 		flatNfts = append(flatNfts, &Nft{
-			OwnerAddress:        osNft.OwnerData.Address,
+			OwnerAddress:        &owner,
 			TokenID:             osNft.TokenID,
 			Name:                osNft.Name,
 			OwnerName:           osNft.OwnerData.UserData.Username,

@@ -30,7 +30,7 @@ func getNftHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Insert NFTs from OpenSea
-		err = nft.CreateNft(res)
+		err = nft.CreateNft(owner, res)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -54,17 +54,17 @@ func getNftHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Insert NFTs from OpenSea
-		err = nft.CreateNft(res)
+		err = nft.CreateNft(owner, res)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-	}
 
-	nfts, err = nft.ListNft(owner)
-	if err != nil {
-		fmt.Println(err)
-		return
+		nfts, err = nft.ListNft(owner)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 
 	util.ServeJson(w, nfts)
