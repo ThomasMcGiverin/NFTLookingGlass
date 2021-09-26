@@ -3,6 +3,7 @@ package nft
 import (
 	"NFTLookingGlass/models"
 	"NFTLookingGlass/pkg/opensea"
+	"fmt"
 	"time"
 )
 
@@ -62,7 +63,7 @@ func InsertNft(osNfts *opensea.NFTResponse) error {
 			ContractDescription: osNft.AssetContractData.Description,
 		})
 	}
-
+	fmt.Println(flatNfts)
 	result := db.Table("nft").Select(
 		"owner_address",
 		"token_id",
@@ -88,17 +89,3 @@ func DeleteNft(owner string) error {
 	result := db.Table("nft").Delete(&Nft{}, &owner)
 	return result.Error
 }
-
-/*
-	OwnerAddress        *string `json:"owner_address"`
-	TokenID             *string `json:"token_id"`
-	Name                *string `json:"name"`
-	Description         *string `json:"description"`
-	ImageURL            *string `json:"image_url"`
-	ImagePreviewURL     *string `json:"image_preview_url"`
-	ImageThumbnailURL   *string `json:"image_thumbnail_url"`
-	ContractAddress     *string `json:"contract_address"`
-	ContractName        *string `json:"contract_name"`
-	ContractSymbol      *string `json:"contract_symbol"`
-	ContractDescription *string `json:"contract_description"`
-*/
