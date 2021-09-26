@@ -1,8 +1,8 @@
 package models
 
 import (
-	"NFTLookingGlass/server/config"
 	"github.com/lib/pq"
+	"github.com/thomasmcgiverin/NFTLookingGlass/server/config"
 	sqltrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/database/sql"
 	gormtrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/gorm.io/gorm.v1"
 	"gorm.io/driver/postgres"

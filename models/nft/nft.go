@@ -1,9 +1,8 @@
 package nft
 
 import (
-	"NFTLookingGlass/models"
-	"NFTLookingGlass/pkg/opensea"
-	"fmt"
+	"github.com/thomasmcgiverin/NFTLookingGlass/models"
+	"github.com/thomasmcgiverin/NFTLookingGlass/pkg/opensea"
 	"time"
 )
 
@@ -11,6 +10,7 @@ type Nft struct {
 	OwnerAddress        *string    `json:"owner_address"`
 	TokenID             *string    `json:"token_id"`
 	Name                *string    `json:"name"`
+	OwnerName           *string    `json:"owner_name"`
 	Description         *string    `json:"description"`
 	ImageURL            *string    `json:"image_url"`
 	ImagePreviewURL     *string    `json:"image_preview_url"`
@@ -34,10 +34,6 @@ func SelectNft(owner string) ([]*Nft, error) {
 		return nil, res.Error
 	}
 
-	if res.RowsAffected == 0 {
-		//TODO: call opensea api?
-	}
-
 	return result, nil
 }
 
@@ -50,9 +46,10 @@ func InsertNft(osNfts *opensea.NFTResponse) error {
 	flatNfts := make([]*Nft, 0)
 	for _, osNft := range osNfts.Assets {
 		flatNfts = append(flatNfts, &Nft{
-			OwnerAddress:        osNft.OwnerData.UserData.Address,
+			OwnerAddress:        osNft.OwnerData.Address,
 			TokenID:             osNft.TokenID,
-			Name: 				 osNft.Name,
+			Name:                osNft.Name,
+			OwnerName:           osNft.OwnerData.UserData.Username,
 			Description:         osNft.Description,
 			ImageURL:            osNft.ImageURL,
 			ImagePreviewURL:     osNft.ImagePreviewURL,
@@ -63,11 +60,12 @@ func InsertNft(osNfts *opensea.NFTResponse) error {
 			ContractDescription: osNft.AssetContractData.Description,
 		})
 	}
-	fmt.Println(flatNfts)
+
 	result := db.Table("nft").Select(
 		"owner_address",
 		"token_id",
 		"name",
+		"owner_name",
 		"description",
 		"image_url",
 		"image_preview_url",

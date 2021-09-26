@@ -1,8 +1,8 @@
 package pkg
 
 import (
-	"NFTLookingGlass/pkg/opensea"
-	"NFTLookingGlass/server/config"
+	"github.com/thomasmcgiverin/NFTLookingGlass/pkg/opensea"
+	"github.com/thomasmcgiverin/NFTLookingGlass/server/config"
 )
 
 var OpenSeaClient *opensea.Client

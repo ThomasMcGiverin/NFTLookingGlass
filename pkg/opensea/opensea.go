@@ -24,11 +24,12 @@ type Asset struct {
 }
 
 type Owner struct {
-	UserData *User `json:"user"`
+	Address  *string `json:"address"`
+	UserData *User   `json:"user"`
 }
 
 type User struct {
-	Address *string `json:"address"`
+	Username *string `json:"username"`
 }
 
 type AssetContract struct {

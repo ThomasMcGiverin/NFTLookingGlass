@@ -1,15 +1,17 @@
 package server
 
 import (
-	"NFTLookingGlass/internal/nft"
-	"NFTLookingGlass/pkg"
-	"NFTLookingGlass/util"
 	"fmt"
+	"github.com/thomasmcgiverin/NFTLookingGlass/internal/nft"
+	"github.com/thomasmcgiverin/NFTLookingGlass/pkg"
+	"github.com/thomasmcgiverin/NFTLookingGlass/util"
 	"net/http"
+	"strings"
 )
 
 func getNftHandler(w http.ResponseWriter, r *http.Request) {
 	owner := util.GetURLParam(r, "owner")
+	owner = strings.ToLower(owner)
 	refresh := util.GetURLBoolParam(r, "refresh")
 
 	if refresh {
@@ -37,7 +39,7 @@ func getNftHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Get NFTs owned by owner from the database
 	nfts, err := nft.ListNft(owner)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -60,7 +62,7 @@ func getNftHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	nfts, err = nft.ListNft(owner)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 		return
 	}

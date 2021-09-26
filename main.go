@@ -1,6 +1,6 @@
 package main
 
-import "NFTLookingGlass/server"
+import "github.com/thomasmcgiverin/NFTLookingGlass/server"
 
 func main() {
 	server.InitServer()

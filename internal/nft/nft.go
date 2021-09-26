@@ -1,9 +1,10 @@
 package nft
 
 import (
-	"NFTLookingGlass/models/nft"
-	"NFTLookingGlass/pkg/opensea"
-	"NFTLookingGlass/util"
+	"fmt"
+	"github.com/thomasmcgiverin/NFTLookingGlass/models/nft"
+	"github.com/thomasmcgiverin/NFTLookingGlass/pkg/opensea"
+	"github.com/thomasmcgiverin/NFTLookingGlass/util"
 )
 
 const (
@@ -20,7 +21,8 @@ func CreateNft(osNfts *opensea.NFTResponse) error {
 	for !inserted && retries < maxRetries {
 		err := nft.InsertNft(osNfts)
 		if err != nil {
-			retries ++
+			fmt.Println(err)
+			retries++
 			continue
 		}
 		inserted = true

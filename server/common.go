@@ -1,7 +1,7 @@
 package server
 
 import (
-	"NFTLookingGlass/util"
+	"github.com/thomasmcgiverin/NFTLookingGlass/util"
 	"log"
 	"net/http"
 )

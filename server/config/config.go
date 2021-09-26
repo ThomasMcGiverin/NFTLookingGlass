@@ -47,8 +47,8 @@ type Configuration struct {
 	MaxOpenConn int `env:"MAX_OPEN_CONN" envDefault:"20"`
 
 	// TODO: Change these urls to the correct database
-	DatabaseURL         string `env:"DATABASE_URL" envDefault:"postgres://localhost:5433/NFTLookingGlass?sslmode=disable"`           // TODO postgres://localhost:5432/account_service?sslmode=disable
-	ReadOnlyDatabaseURL string `env:"READ_ONLY_DATABASE_URL" envDefault:""` // TODO postgres://localhost:5432/account_service?sslmode=disable
+	DatabaseURL         string `env:"DATABASE_URL" envDefault:"postgres://localhost:5432/nft_service?sslmode=disable"` // TODO postgres://localhost:5432/account_service?sslmode=disable
+	ReadOnlyDatabaseURL string `env:"READ_ONLY_DATABASE_URL" envDefault:""`                                            // TODO postgres://localhost:5432/account_service?sslmode=disable
 	//RedisURL            string `env:"REDIS_URL" envDefault:"redis://localhost:6379"`                                                 // TODO
 	OpenSeaURL string `env:"OPENSEA_URL" envDefault:"https://api.opensea.io"`
 
